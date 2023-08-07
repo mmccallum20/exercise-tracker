@@ -71,7 +71,7 @@ router.patch("/add", (req, res) => {
     user.exercise = exercise;
   }
   if (req.body.exercise2) {
-    user.exercise = exercise2;
+    user.exercise2 = exercise2;
   }
   if (req.body.duration) {
     user.duration = duration;
@@ -89,10 +89,6 @@ router.get("/log/:id", (req, res) => {
   let id = req.params.id;
   const chosenUser = users.find((user) => user.id == id); // filter function to find the user we want to update
 
-  // let id = req.params.id;
-
-  // const foundUser = users.find((user) => user.id == id);
-
   console.log(chosenUser);
 
   let log = [];
@@ -100,8 +96,7 @@ router.get("/log/:id", (req, res) => {
   let exercise2 = chosenUser.exercise2;
 
   if (exercise && exercise2) {
-    log.push(exercise);
-    log.push(exercise2);
+    log.push(exercise, exercise2);
   } else if (exercise) {
     log.push(exercise);
   } else {
